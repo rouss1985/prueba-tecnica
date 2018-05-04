@@ -1,3 +1,9 @@
+body{
+    background-image: url("https://i1.wp.com/www.livetricks.in/inc/uploads/2017/06/github-pages.jpg?resize=1200%2C800&ssl=1");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .containerGral{
     max-width: 1200px;
     margin: 0 auto;

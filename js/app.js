@@ -39,6 +39,11 @@ $("#btn").click(function(){
 });
 
 //Este evento es para añadir la nota en firebase
+$('#btn2').click(function(){
+    let user= $("#busqueda").val();
+    let nota= $("#textNote").val();
+    writeNewNote(user, nota);
+});
 
 //esta función es el llamado a la Api de gitHub con el metodo GET al endPoint users
 const gitApi =(busqueda) =>{
@@ -112,13 +117,13 @@ const gitRepos =(busqueda) =>{
 const writeNewNote = (user, nota) =>{
     let database = firebase.database();
     // A post entry.
-    var postData = {
+    let postData = {
       nota: nota
     };
     // Get a key for a new Post.
-    var newPostKey = firebase.database().ref().child('repos').push().key;
+    let newPostKey = firebase.database().ref().child('repos').push().key;
 
-    var updates = {};
+    let updates = {};
     updates['/repos/' + user + '/' + newPostKey] = postData;
 
     return firebase.database().ref().update(updates);
