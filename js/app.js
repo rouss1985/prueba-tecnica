@@ -1,15 +1,20 @@
-$(document).foundation()
-
-
+$(document).foundation();
 //contenedor del ajax ->  evento -> selector al que le voy a dar click
 $("#btn").click(function(){
-    //busqueda es
+    //busqueda es el parametro que voy a buscar en github
     let busqueda = $("#busqueda").val();
-    //llamo a la api para ver el perfiles
-    gitApi(busqueda);
+
+    if(busqueda){
+        //llamo a la api para ver el perfiles
+        gitApi(busqueda);
+        //llamo a la api para ver los repositorios
+        gitRepos(busqueda);
+    }else{
+        alert("Debes ingresar un usuario");
+    }
 });
 
-//esta función
+//esta función es el llamado a la Api de gitHub con el metodo GET al endPoint users
 const gitApi =(busqueda) =>{
     $.ajax({
         type: "GET",
@@ -20,8 +25,8 @@ const gitApi =(busqueda) =>{
             $("#perfil").html('Esperando respuesta...');
         },
         success: function(data){
-            console.log(data);
-            //genero un template
+            //console.log(data);
+            //genero un template string y le paso dinamicamente los valores obtenidos de la respuesta
             let templatePerfil = `
                 <h3 class="titleP">Perfil del usuario</h3>
                 <div class="small-12 columns">
@@ -41,6 +46,39 @@ const gitApi =(busqueda) =>{
         //en caso de error
         fail: function(jqXHR, textStatus, errorThrown){
             $("#perfil").html('Hubo un error al llamar a la API. Error: '+ errorThrown);
+        }
+    });
+}
+
+//esta función es el llamado a la Api de gitHub con el metodo GET al endPoint repos
+const gitRepos =(busqueda) =>{
+    $.ajax({
+        type: "GET",
+        dataType: "json",
+        cache: true,
+        url: "https://api.github.com/users/"+busqueda+"/repos",
+        beforeSend: function(){
+            $("#repos").html('Esperando respuesta...');
+        },
+        success: function(data){
+            console.log(data);
+            //genero un template string y le paso dinamicamente los valores obtenidos de la respuesta
+            let templateRepos = `<h3>Repositorios</h3>`;
+            for (var i in data) {
+                templateRepos+=`
+                <div class="repositorio">
+                    <p>Nombre del repositorio: ${data[i].name}</p>
+                    <p>Descripción: ${data[i].description}</p>
+                </div>`;
+                //console.log(data[i]);
+            }
+             //mando la respuesta
+            $("#repos").html(templateRepos);
+
+        },
+        //en caso de error
+        fail: function(jqXHR, textStatus, errorThrown){
+            $("#repos").html('Hubo un error al llamar a la API. Error: '+ errorThrown);
         }
     });
 }
