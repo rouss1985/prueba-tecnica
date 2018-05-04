@@ -4,24 +4,74 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
+    <title>Prueba tecnica</title>
     <link rel="stylesheet" href="css/foundation.css">
     <link rel="stylesheet" href="css/app.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="containerGral">
         <div class="row">
             <div class="small-12 medium-8 columns medium-offset-2">
                 <div class="input-group">
-                  <input class="input-group-field" type="text">
+                  <input id="busqueda" class="input-group-field" type="text">
                   <div class="input-group-button">
-                    <input type="submit" class="button" value="Buscar">
+                    <input id="btn" type="submit" class="button" value="Buscar">
                   </div>
                 </div>
             </div>
             <div class="small-12 columns text-center">
                 <h3>Busqueda de perfiles en gitHub</h3>
             </div>
+        </div>
+        <div class="row text-center dataPaint">
+                <div id="perfil" class="perfil small-12 medium-4 columns">
+
+                </div>
+                <div id="repos" class="repositorios small-12 medium-4 columns">
+                    <h3>Repositorios</h3>
+                    <div class="repositorio">
+                        <p>Nombre del repositorio:</p>
+                        <p>Descripción:</p>
+                    </div>
+                    <div class="repositorio">
+                        <p>Nombre del repositorio:</p>
+                        <p>Descripción:</p>
+                    </div>
+                    <div class="repositorio">
+                        <p>Nombre del repositorio:</p>
+                        <p>Descripción:</p>
+                    </div>
+                    <div class="repositorio">
+                        <p>Nombre del repositorio:</p>
+                        <p>Descripción:</p>
+                    </div>
+                    <div class="repositorio">
+                        <p>Nombre del repositorio:</p>
+                        <p>Descripción:</p>
+                    </div>
+                </div>
+                <div id="notas" class="notas small-12 medium-4 columns text-center">
+                    <h3 class="notesC">Notas</h3>
+                    <div class="input-group">
+                      <input class="input-group-field" placeholder="Agregar nota" type="text">
+                      <div class="input-group-button">
+                        <input id="btn" type="submit" class="button" value="Añadir">
+                      </div>
+                    </div>
+                    <div class="notes">
+                        <div class="notas">
+                            <p>Nota #<i class="fa fa-trash delete"></i></p>
+
+                        </div>
+                        <div class="notas">
+                            <p>Nota #<i class="fa fa-trash delete"></i></p>
+                        </div>
+                        <div class="notas">
+                            <p>Nota #<i class="fa fa-trash delete"></i></p>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 
