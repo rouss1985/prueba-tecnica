@@ -1,0 +1,46 @@
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foundation for Sites</title>
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+  </head>
+  <body>
+    <div class="containerGral">
+        <div class="row">
+            <div class="small-12 medium-8 columns medium-offset-2">
+                <div class="input-group">
+                  <input class="input-group-field" type="text">
+                  <div class="input-group-button">
+                    <input type="submit" class="button" value="Buscar">
+                  </div>
+                </div>
+            </div>
+            <div class="small-12 columns text-center">
+                <h3>Busqueda de perfiles en gitHub</h3>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/jquery.js"></script>
+    <script src="js/vendor/what-input.js"></script>
+    <script src="js/vendor/foundation.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.13.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDUwxf2B1_bdtc7KdH0MLgqG-qrACX78Qw",
+        authDomain: "github-12f0b.firebaseapp.com",
+        databaseURL: "https://github-12f0b.firebaseio.com",
+        projectId: "github-12f0b",
+        storageBucket: "",
+        messagingSenderId: "1041164016541"
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
