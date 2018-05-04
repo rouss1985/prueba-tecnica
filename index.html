@@ -29,27 +29,19 @@
 
                 </div>
                 <div id="repos" class="repositorios small-12 medium-4 columns">
-                    
+
                 </div>
                 <div id="notas" class="notas small-12 medium-4 columns text-center">
                     <h3 class="notesC">Notas</h3>
                     <div class="input-group">
                       <input class="input-group-field" placeholder="Agregar nota" type="text">
                       <div class="input-group-button">
-                        <input id="btn" type="submit" class="button" value="Añadir">
+                        <input id="btn2" type="submit" class="button" value="Añadir">
                       </div>
                     </div>
-                    <div class="notes">
-                        <div class="notas">
-                            <p>Nota #<i class="fa fa-trash delete"></i></p>
+                    <div class="notes" id="listanotas">
 
-                        </div>
-                        <div class="notas">
-                            <p>Nota #<i class="fa fa-trash delete"></i></p>
-                        </div>
-                        <div class="notas">
-                            <p>Nota #<i class="fa fa-trash delete"></i></p>
-                        </div>
+
                     </div>
                 </div>
         </div>
@@ -66,7 +58,7 @@
         authDomain: "github-12f0b.firebaseapp.com",
         databaseURL: "https://github-12f0b.firebaseio.com",
         projectId: "github-12f0b",
-        storageBucket: "",
+        storageBucket: "github-12f0b.appspot.com",
         messagingSenderId: "1041164016541"
       };
       firebase.initializeApp(config);

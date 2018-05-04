@@ -1,4 +1,7 @@
 $(document).foundation();
+
+
+$("#notas").hide();
 //contenedor del ajax ->  evento -> selector al que le voy a dar click
 $("#btn").click(function(){
     //busqueda es el parametro que voy a buscar en github
@@ -9,10 +12,33 @@ $("#btn").click(function(){
         gitApi(busqueda);
         //llamo a la api para ver los repositorios
         gitRepos(busqueda);
+
+        $("#notas").show();
+
+        //verifico si hay notas asociadas al Usuario
+        let ref = firebase.database().ref();
+        ref.child('repos/'+busqueda).on("value", function(snapshot) {
+            if(snapshot.val()){
+                let q = snapshot.val();
+                let templateNotas = ``;
+                for (var i in q) {
+                    templateNotas += `
+                    <div class="notas">
+                         <p>${q[i].nota}<i class="fa fa-trash delete"></i></p>
+                    </div>
+                     `;
+                }
+                $("#listanotas").html(templateNotas);
+            }else{
+                $("#listanotas").html("No hay registros");
+            }
+        });
     }else{
         alert("Debes ingresar un usuario");
     }
 });
+
+//Este evento es para añadir la nota en firebase
 
 //esta función es el llamado a la Api de gitHub con el metodo GET al endPoint users
 const gitApi =(busqueda) =>{
@@ -81,4 +107,19 @@ const gitRepos =(busqueda) =>{
             $("#repos").html('Hubo un error al llamar a la API. Error: '+ errorThrown);
         }
     });
+}
+
+const writeNewNote = (user, nota) =>{
+    let database = firebase.database();
+    // A post entry.
+    var postData = {
+      nota: nota
+    };
+    // Get a key for a new Post.
+    var newPostKey = firebase.database().ref().child('repos').push().key;
+
+    var updates = {};
+    updates['/repos/' + user + '/' + newPostKey] = postData;
+
+    return firebase.database().ref().update(updates);
 }
