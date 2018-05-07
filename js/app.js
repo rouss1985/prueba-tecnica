@@ -21,13 +21,13 @@ $("#btn").click(function(){
             if(snapshot.val()){
                 let q = snapshot.val();
                 let templateNotas = ``;
-                for (var i in q) {
+                $.each( q, function( key, value ) {
                     templateNotas += `
                     <div class="notas">
-                         <p>${q[i].nota}<i class="fa fa-trash delete"></i></p>
+                         <p>${value.nota}<i class="fa fa-trash delete" data-key="${key}"></i></p>
                     </div>
                      `;
-                }
+                });
                 $("#listanotas").html(templateNotas);
             }else{
                 $("#listanotas").html("No hay registros");
@@ -37,7 +37,14 @@ $("#btn").click(function(){
         alert("Debes ingresar un usuario");
     }
 });
-
+//este evento elimina el registro de firebase
+$('#notas').on('click','.delete',function(){
+    let busqueda = $("#busqueda").val();
+    let ref = firebase.database().ref();
+    let key = $(this).attr('data-key');
+    ref.child('repos/'+busqueda+"/"+key).remove();
+    $( this ).closest( "div" ).remove();
+});
 //Este evento es para añadir la nota en firebase
 $('#btn2').click(function(){
     let user= $("#busqueda").val();
